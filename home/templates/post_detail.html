@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="post-container">
+  
+  <!-- Main Post Area -->
+  <div class="post-main">
+    <div class="post-detail">
+      <h1>{{ post.title }}</h1>
+
+      {% if post.cat and post.cat.category %}
+        <p>
+          <em>
+            Category: 
+            <a href="{% url 'post_by_category' post.cat.category %}">
+              {{ post.cat.category }}
+            </a>
+          </em>
+        </p>
+      {% else %}
+        <p><em>Category: Uncategorized</em></p>
+      {% endif %}
+
+      <img src="{{ post.image.url }}" alt="{{ post.title }}">
+      
+      <div class="post-content">
+        {{ post.content|safe }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Reserved Sidebar -->
+  <div class="post-sidebar">
+    <!-- Ad space / suggested posts (for future use) -->
+  </div>
+
+</div>
+{% endblock content %}

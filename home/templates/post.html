@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% for p in post  %}
+ <div>
+    <h1>{{p.title}}</h1>
+    <br>
+    <p>{{p.description}}</p>
+    <br>
+    <p>{{p.content}}</p>
+    
+ </div>
+{% endfor %}

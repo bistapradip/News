@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class = "card-container">
+    {% for p in post  %}
+    <div class="custom-card" style="width: 18rem;">
+        <img class="card-img-top" src="{{p.image.url}}" alt="{{p.title}}">
+        <div class="card-body">
+            <h5 class="card-title">{{p.title}}</h5>
+            <p class="card-text">{{p.description}}</p>
+            <a href="{% url 'post' p.url %}" class="btn btn-primary">Read More..</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}
+
