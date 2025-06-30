@@ -81,3 +81,28 @@ def esewa_verify(request):
         return HttpResponse("Payment successful! You are now subscribed.")
     else:
         return HttpResponse("Payment failed or invalid.")
+    
+@login_required
+def post_delete(request, pid):
+    post =  Post.objects.filter(pid =pid)
+    if request.method == "POST":
+        post.delete()
+        return redirect("home")
+    
+    return render (request, "post_delete.html", {'post':post})
+
+
+@login_required
+def post_edit(request, pid):
+    post = get_object_or_404(Post, pid=pid)
+    print(post.pid)
+    print("Pradip")
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = PostForm(instance=post)
+
+    return render(request, "post_edit.html", {'form':form, 'post':post})

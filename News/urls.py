@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from home.views import post, home, post_detail, esewa_request, esewa_verify, post_by_category, add_post
+from home.views import post, home, post_detail, esewa_request, esewa_verify, post_by_category, add_post, post_delete, post_edit
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -27,6 +27,8 @@ urlpatterns = [
     path('category/<str:cat_name>/', post_by_category, name = "post_by_category"),
     path('accounts/', include('allauth.urls')),
     path('addPost/', add_post, name = "add_post"),
+    path('editPost/<int:pid>/',post_edit, name = "post_edit"),
+    path('deletePost/<int:pid>/', post_delete, name = 'post_delete'),
     path('subscribe/', esewa_request, name='subscribe'),
     path('esewa_verify/', esewa_verify, name='esewa_verify'),
 
